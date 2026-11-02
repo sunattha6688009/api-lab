@@ -16,7 +16,7 @@ class QuickPizza(requests.Session):
 def api():
     with QuickPizza() as session:
         yield session
-        
+
 def log_in_new_user(api):
     """Create a user with a new name, log in, and return its header."""
     name = "lab-" + uuid.uuid4().hex[:12]
@@ -31,3 +31,9 @@ def log_in_new_user(api):
 @pytest.fixture
 def auth(api):
     return log_in_new_user(api)
+
+@pytest.fixture
+def pizza_id(api, auth):
+    res = api.post("/api/pizza", json={}, headers=auth)
+    assert res.status_code == 200
+    return res.json()["pizza"]["id"]
