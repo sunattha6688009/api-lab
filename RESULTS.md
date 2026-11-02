@@ -15,7 +15,7 @@
 - Severity: Medium (the server fails on a valid but impossible request, and the caller gets no message)
 
 ## Part A
-- Step A4, status codes when the other user reads, changes and deletes:
+- Step A4, status codes when the other user reads, changes and deletes: read 404 ({"error":"not found"}), update 400 ({"error":"rating ID...not found"}), delete 400 ({"error":"rating ID...not found"})
 | Characteristic | Blocks | Values in the tests |
 |---|---|---|
 | C1 Value of stars | below 1, 1 to 5 (base), above 5 | 0, 3, 6 |
